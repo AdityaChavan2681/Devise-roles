@@ -1,0 +1,22 @@
+<h1>Pages#home</h1>
+<p>Find me in app/views/pages/home.html.erb</p>
+
+<% if current_user %>
+
+Hello <%= current_user.email %>!
+<br/>
+<% if current_user.admin? %>
+You are a  [<%= current_user.role %>] There are total <%= User.count %> users in the system
+<br/>
+
+    You have successfully authenticated with your devise account.
+    You are not ready to interact with this application
+    <%= link_to "Log out", destroy_user_session_path, 'data-turbo-method': :delete%>
+    <% else %>
+
+      You are not signed in yet.
+      <%= link_to "Sign up!", new_user_registration_path %>
+      <%= link_to "Log in!", new_user_session_path %>
+      <% end %>
+
+<% end %>
